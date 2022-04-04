@@ -20,7 +20,7 @@ drawings:
   persist: false
 ---
 
-# Debugging and Error handling in Node.js
+# Debugging in Node.js
 
 ---
 

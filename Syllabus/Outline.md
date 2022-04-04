@@ -8,7 +8,7 @@
 
 
 # Day 2
-- Understand the development of asyncronous control flow
+- Understand the development of asynchronous control flow
 - Understand Node's event system
 - Confidently understand and handle errors in Node
 - Handle binary data in Node with buffers

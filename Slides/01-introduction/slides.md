@@ -21,7 +21,7 @@ drawings:
 
 Kevin Cunningham
 
-Grab repo at 
+Grab repo at https://github.com/doingandlearning/april-node-training
 
 ---
 
@@ -45,10 +45,8 @@ Grab repo at
 | Debugging | Files, Processes and OSs |
 | Core JS Concepts | Child processes |
 | Packages and Dependencies | Testing with Node |
-| Node module system | Express | 
-| Async control flow | RESTful Services |
-| Node event system | SQL with Node | 
-| Error handling |  |
+| Node module system | Async control flow | 
+| Node event system | Error handling | 
 
 <!--
 If you can, please turn on cameras, interrupt me, ask questions, disagree and chat.
@@ -73,7 +71,7 @@ If you can, please turn on cameras, interrupt me, ask questions, disagree and ch
 # A bit about you
 
 - What your role is
-- JavaScript and other programming experience
+- What your Node experience is
 - What you're hoping to get out of this course
 
 ---
