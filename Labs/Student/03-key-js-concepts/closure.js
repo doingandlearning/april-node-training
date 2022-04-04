@@ -1,5 +1,6 @@
 const assert = require("assert");
 
+// TODO: create a prefixer function that will return a function with the prefix in place.
 function prefixer(prefix) {
   return (text) => `${prefix}${text}`;
 }

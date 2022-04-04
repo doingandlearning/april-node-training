@@ -22,20 +22,18 @@ function getNestedNumbers() {
 
 // Using destructuring, call `getAddress()` and create a 'city', 'state' and 'zip' variable.
 
-const { city: hamlet, county, postcode } = getAddress();
-// const city = address.city;
-// const county = address.county;
-// const postcode = address.postcode;
+const address = getAddress();
+const city = address.city;
+const county = address.county;
+const postcode = address.postcode;
 
-assert.equal(hamlet, "Dundrum");
+assert.equal(city, "Dundrum");
 assert.equal(county, "Down");
 assert.equal(postcode, "BT33");
 
 console.log("Address tests passed.");
 
 // Call getNumbers and pull the first value out as `one`, the second as `two` and the third as `three`
-
-const [one, two, third] = getNumbers();
 
 assert.equal(one, 1);
 assert.equal(two, 2);
@@ -44,8 +42,6 @@ assert.equal(third, 3);
 console.log("getNumbers test passed.");
 
 // Call getNestedNumbers and pull the first value out as `seven`, the four as `four` and 6 as `six`.
-// return [7, 4, [3, 4, [5, 6]]];
-const [seven, four, [, , [, six]]] = getNestedNumbers();
 
 assert.equal(seven, 7);
 assert.equal(four, 4);
