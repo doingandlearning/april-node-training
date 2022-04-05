@@ -1,0 +1,13 @@
+{
+  "name": "06-evolution-of-async",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kevin Cunningham",
+  "license": "MIT"
+}

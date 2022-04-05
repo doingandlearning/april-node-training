@@ -1,0 +1,22 @@
+{
+  "name": "04-packages-and-dependencies",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "standard",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "Kevin Cunningham",
+  "license": "MIT",
+  "dependencies": {
+    "pino": "^7.9.2" 
+  },
+  "devDependencies": {
+    "standard": "^16.0.4"
+  }
+}
