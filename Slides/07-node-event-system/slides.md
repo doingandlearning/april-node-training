@@ -322,7 +322,106 @@ ee.emit('error', new Error('oh oh'))
 </div>
 
 ---
+layout: two-cols
+---
 
+# Promise-Based Single Use Listener and **AbortController**
+
+<v-clicks>
+
+```js
+import someEventEmitter from './somewhere.js'  
+import { once } from 'events'
+
+await once(someEventEmitter, 'my-event')
+```
+
+```js
+import { once, EventEmitter } from 'events'  
+const uneventful = new EventEmitter()
+
+await once(uneventful, 'ping')  
+console.log('pinged!')
+```
+
+</v-clicks>
+
+::right::
+
+<v-clicks>
+
+```js
+import { once, EventEmitter } from 'events'  
+import { setTimeout } from 'timers/promises'
+
+const uneventful = new EventEmitter()
+
+const ac = new AbortController()  
+const { signal } = ac
+
+setTimeout(500).then(() => ac.abort())
+
+try {  
+  await once(uneventful, 'ping', { signal })  
+  console.log('pinged!')  
+} catch (err) {  
+  // ignore abort errors:  
+  if (err.code !== 'ABORT_ERR') throw err  
+  console.log('canceled')  
+}
+```
+
+</v-clicks>
+
+
+<!--
+
+
+In the prior chapter, _"Asynchronous Control Flow"_, we discussed **AbortController** as a means of canceling asynchronous operations. It can also be used to cancel promisified event listeners. The **events.once** function returns a promise that resolves once an event has been fired:
+
+
+Execution will pause on the line starting **await once**, until the registered event fires. If it never fires, execution will never proceed past that point. This makes **events.once** useful in async/await or ESM Top-Level Await scenarios (we're using ESM for Top-Level Await here), but we need an escape-hatch for scenarios where an event might not fire. For example the following code will never output **pinged!**:
+
+
+
+This is because the **uneventful** event emitter doesn't emit any events at all. Let's imagine that it could emit an event, but it might not or it might take longer than is acceptable for the event to emit. We can use an **AbortController** to cancel the promisifed listener after 500 milliseconds like so:
+
+
+
+This code will now output **canceled** every time. Since **uneventful** never emits pinged, after 500 milliseconds ac.abort is called, and this causes the signal instance passed to **events.once** to emit an abort event which triggers **events.once** to reject the returned promise with an **AbortError**. We check for the **AbortError**, rethrowing if the error isn't related to the **AbortController**. If the error is an **AbortError** we log out **canceled**.
+
+We can make this a little bit more realistic by making the event listener sometimes take longer than 500 milliseconds, and sometimes take less than 500 milliseconds:
+
+```js
+import { once, EventEmitter } from 'events'  
+import { setTimeout } from 'timers/promises'
+
+const sometimesLaggy = new EventEmitter()
+
+const ac = new AbortController()  
+const { signal } = ac
+
+setTimeout(2000 * Math.random(), { signal }).then(() => {  
+  sometimesLaggy.emit('ping')  
+})
+
+setTimeout(500).then(() => ac.abort())
+
+try {  
+  await once(sometimesLaggy, 'ping', { signal })  
+  console.log('pinged!')  
+} catch (err) {  
+  // ignore abort errors:  
+  if (err.code !== 'ABORT_ERR') throw err  
+  console.log('canceled')  
+}
+```
+
+About three out of four times this code will log out **canceled**, one out of four times it will log out **pinged!**. Also note an interesting usage of **AbortController** here: **ac.abort** is used to cancel both the **event.once** promise and the first **timers/promises setTimeout** promise.
+
+-->
+
+---
 # Alternatives to EventEmitter
 
 The EventEmitter class is an implementation of the observer pattern. A related pattern is publish/subscribe, where publishers send messages that are characterized into classes to subscribers without knowing the details of the subscribers themselves.

@@ -1,0 +1,22 @@
+{
+  "name": "06",
+  "version": "1.0.0",
+  "description": "",
+  "main": "add.js",
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "dev": "nodemon add.js",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "tap": "^15.1.5"
+  },
+  "devDependencies": {
+    "jest": "^27.4.3"
+  }
+}

@@ -1,9 +1,18 @@
 import { setTimeout } from "timers/promises";
 
-const timeout = setTimeout(1000, "will be logged");
+const ac = new AbortController();
+const { signal } = ac;
+const timeout = setTimeout(1000, "will be logged", { signal });
 
 setImmediate(() => {
-  clearTimeout(timeout);
+  // clearTimeout(timeout);
+  ac.abort();
 });
 
-console.log(await timeout);
+try {
+  // throw new Error("I'm tired.");
+  console.log(await timeout);
+} catch (error) {
+  if (error.code !== "ABORT_ERR") throw error;
+  else console.log("Timeout aborted by controller.");
+}

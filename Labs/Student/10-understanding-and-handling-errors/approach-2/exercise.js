@@ -15,7 +15,11 @@
  * @returns {Number}  Combined length of a and b
  */
 export const combinedLength = (a, b) => {
-  // CODE HERE
+  if (!Array.isArray(a) || !Array.isArray(b)) {
+    throw new TypeError("Both of the first arguments need to be arrays.");
+  }
+
+  return a.length + b.length;
 };
 
 /*
@@ -35,6 +39,16 @@ export const combinedLength = (a, b) => {
  * @returns {Number}   sum of list
  */
 export const sumArray = (xs) => {
+  if (!Array.isArray(xs)) {
+    throw new TypeError("Need to pass an array of numbers.");
+  }
+
+  if (xs.some((item) => typeof item !== "number")) {
+    throw new TypeError("All elements in the array need to be numbers.");
+  }
+
+  return xs.reduce((a, c) => a + c, 0);
+
   // CODE HERE
 };
 
@@ -62,6 +76,16 @@ export const sumArray = (xs) => {
 export const combineAndPrint = (a, b) => {
   const errMsg = "Invalid arguments: both arguments must be arrays";
 
+  if (!Array.isArray(a) || !Array.isArray(b)) {
+    throw new TypeError(errMsg);
+  }
+
+  const L = combinedLength(a, b);
+  const sumA = sumArray(a);
+  const sumB = sumArray(b);
+
+  return `Combined length: ${L}; Combined sum of elements: ${sumA + sumB}`;
+
   // CODE HERE
 };
 
@@ -86,5 +110,10 @@ export const combineAndPrint = (a, b) => {
 export const wrapTryCatch =
   (fn) =>
   (...args) => {
+    try {
+      return fn(...args);
+    } catch (error) {
+      return;
+    }
     // CODE HERE
   };

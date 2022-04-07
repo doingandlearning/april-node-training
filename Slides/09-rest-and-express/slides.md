@@ -279,12 +279,14 @@ BAD https://api.starwars.com/characters/1
 
 # Verbs
 
-Get
-Post
-Put
-Patch
-Delete
-Options
+<p></p>
+
+- Get
+- Post
+- Put
+- Patch
+- Delete
+- Options
 
 ---
 

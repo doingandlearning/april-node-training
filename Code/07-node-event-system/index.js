@@ -1,25 +1,41 @@
 const { EventEmitter } = require("events");
-const ee = new EventEmitter();
 
-const listener1 = () => {
-  console.log("Listener 1");
-};
-const listener2 = () => {
-  console.log("Listener 2");
-};
+class AmidoEvent extends EventEmitter {
+  constructor(opts) {
+    super(opts);
+    this.name = "AmidoEvent";
+  }
+  destroy(err) {
+    if (err) {
+      this.emit("error", err);
+    }
+    this.emit("close");
+  }
+}
 
-ee.on("my-event", listener1);
-ee.on("my-event2", listener2);
+const ee = new AmidoEvent();
 
-setInterval(() => {
-  ee.emit("my-event");
-  ee.emit("my-event2");
-}, 200);
+const listener1 = (station) =>
+  console.log(`I'm listener 1! I care we've just left ${station}`);
+const listener2 = (station) =>
+  console.log(`I'm listener 2! I care we've just left ${station}`);
+const listener3 = (station) =>
+  console.log(`I'm listener 3! I care we've just left ${station}`);
 
-setTimeout(() => {
-  ee.removeAllListeners();
-}, 1000);
+ee.on("train departure", listener1);
+ee.on("train departure", listener2);
 
-ee.on("error", (err) => console.log(err));
+ee.emit("train departure", "Brighton");
+ee.emit("train departure", "Worthing");
+ee.removeListener("train departure", listener1);
+ee.emit("train departure", "Goring");
+// Got to destination [listener2]
+ee.removeAllListeners("train departure");
+ee.removeAllListeners();
+// []
+ee.emit("train departure", "Littlehampton");
+ee.on("train departure", listener3);
+ee.emit("train departure", "Goring");
 
-ee.emit("error", new Error("oh oh"));
+ee.on("error", () => console.log("I'm handling errors responsibly."));
+ee.emit("error");
