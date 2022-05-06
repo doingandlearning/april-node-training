@@ -16,41 +16,8 @@ class TickEmitter extends EventEmitter {
 }
 
 function tickingTimer(ms, cb) {
-  const emitter = new TickEmitter();
-  let time = 0;
-  let count = 0;
-
-  process.nextTick(() => {
-    emitter.emit("tick");
-    count++;
-  });
-
-  let date = new Date();
-
-  if (date % 5 === 0) {
-    emitter.emit("error", new Error("Multiple of 5"));
-  }
-
-  const interval = setInterval(() => {
-    time += 50;
-
-    date = new Date();
-
-    if (date % 5 === 0) {
-      emitter.emit("error", new Error("Multiple of 5"));
-    }
-
-    if (time > ms) {
-      clearInterval(interval);
-      cb();
-      console.log("This many: ", count);
-      return count;
-    }
-    emitter.emit("tick");
-    count++;
-  }, 50);
-
-  return emitter; // TODO: create event emitter
+ 
+  // TODO: create event emitter
 }
 
 tickingTimer(50, () => console.log("all done!"))

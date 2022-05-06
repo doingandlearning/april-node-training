@@ -2,13 +2,11 @@ const fs = require("fs");
 
 function readFile(filename, encoding) {
   //TODO Create a promise version of the async readFile function
-  return new Promise((resolve, reject) => {
-    fs.readFile(filename, encoding, (err, data) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(data);
-    });
+  fs.readFile("./blah.nofile", (err, data) => {
+    if (err) {
+      throw err
+    }
+    next(data);
   });
 }
 

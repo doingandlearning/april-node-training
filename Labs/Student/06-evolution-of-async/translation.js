@@ -20,13 +20,7 @@ api.register("place", "lieu");
 
 // 1. Write a function that will log the translated word. You should not have an UnhandledPromiseRejections.
 async function logTranslatedWord(word) {
-  try {
-    console.log(await api.fetch(word));
-  } catch (error) {
-    if (error instanceof Untranslatable)
-      console.log("Couldn't translate that word.");
-    else console.log(error);
-  }
+
 }
 
 logTranslatedWord("Hello");
