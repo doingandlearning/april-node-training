@@ -9,6 +9,7 @@ const server = createServer((req, res) => {
   console.log(`File request received: ${filename}`);
   req
     .pipe(createGunzip())
+
     .pipe(createWriteStream(destFilename))
     .on("finish", () => {
       res.writeHead(201, { "Content-Type": "text/plain" });

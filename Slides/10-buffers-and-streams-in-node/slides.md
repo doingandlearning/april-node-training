@@ -23,13 +23,25 @@ drawings:
 # Using buffers and streams
 
 ---
-
+layout: two-cols
+---
 # Good morning! 👋🏻
 
-Same deal as yesterday:
+As you arrive, if you pull down the latest code from our repo (https://github.com/doingandlearning/april-node-training).
 
-- Pull down the repo with today's slides and exercises.
-- Have a think about a takeaway from last Monday.
+In chat write:
+
+Recent technology that fascinates you or future technology you would like to see developed.
+
+::right::
+
+<img src="/assets/tapping-fingers-robot.gif" />
+
+
+
+
+
+
 
 ---
 
@@ -715,7 +727,7 @@ Just to make a practical example, let's imagine we are asked by a Fortune 500 co
 
 This is what the file might look like.
 
-```csv
+```
 type,country,profit
 Household,Namibia,597290.92
 Baby Food,Iceland,808579.10

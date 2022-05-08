@@ -3,11 +3,11 @@ const { spawnSync, spawn } = require("child_process");
 
 // Example 1:
 
-// const result = spawnSync(process.execPath, [
-//   "-e",
-//   `console.log('subprocess stdio output')`,
-// ]);
-// console.log(result);
+const result = spawnSync(process.execPath, [
+  "-e",
+  `console.log('subprocess stdio output')`,
+]);
+console.log(result);
 
 // Example 2:
 
@@ -31,12 +31,12 @@ const { spawnSync, spawn } = require("child_process");
 
 // Example 4:
 
-const sp = spawn(process.execPath, [`-e`, `process.exit(1)`]);
+// const sp = spawn(process.execPath, [`-e`, `process.exit(1)`]);
 
-console.log("pid is", sp.pid);
+// console.log("pid is", sp.pid);
 
-sp.stdout.pipe(process.stdout);
+// sp.stdout.pipe(process.stdout);
 
-sp.on("close", (status) => {
-  console.log("exit status was", status);
-});
+// sp.on("close", (status) => {
+//   console.log("exit status was", status);
+// });

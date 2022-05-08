@@ -1,0 +1,17 @@
+"use strict";
+const { join } = require("path");
+
+const { readFile, writeFile } = require("fs");
+
+readFile(__filename, { encoding: "utf8" }, (err, contents) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  const out = join(__dirname, "out.txt");
+  writeFile(out, contents.toUpperCase(), { flag: "a" }, (err) => {
+    if (err) {
+      console.error(err);
+    }
+  });
+});

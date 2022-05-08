@@ -176,8 +176,8 @@ console.log(contents)
 </v-clicks>
 
 
-<!--
 
+<!--
 
 All the names of synchronous methods in the **fs** module end with **Sync**. For instance, **fs.readFileSync**. Synchronous methods will block anything else from happening in the process until they have resolved. These are convenient for loading data when a program starts, but should mostly be avoided after that. If a synchronous method stops anything else from happening, it means the process can't handle or make requests or do any kind of I/O until the synchronous operation has completed.
   
@@ -211,7 +211,7 @@ For a full list of supports flags, see [File System Flags](https://nodejs.org/di
 If there's a problem with an operation the ***Sync** APIs will throw. So to perform error handling they need to be wrapped in a **try/catch**.
   
 
-  To create this error the **fs.chmodSync** method was used. It generated a permission denied error when the **fs.writeFileSync** method attempted to access it. This triggered the **catch** block with the error where it was logged out with **console.error**. The permissions were then restored at the end using **fs.chmodSync** again. For more on **fs.chmodSync** see [Node.js Documentation](https://nodejs.org/dist/latest-v12.x/docs/api/fs.html#fs_fs_fchmodsync_fd_mode).
+To create this error the **fs.chmodSync** method was used. It generated a permission denied error when the **fs.writeFileSync** method attempted to access it. This triggered the **catch** block with the error where it was logged out with **console.error**. The permissions were then restored at the end using **fs.chmodSync** again. For more on **fs.chmodSync** see [Node.js Documentation](https://nodejs.org/dist/latest-v12.x/docs/api/fs.html#fs_fs_fchmodsync_fd_mode).
   
   In the case of the ***Sync**, APIs control flow is very simple because execution is sequential, the chronological ordering maps directly with the order of instructions in the file. However, Node works best when I/O is managed in the background until it is ready to be processed. For this, there's the callback and promise based filesystem APIs. The asynchronous control flow was discussed at length in _Section 8 -_ _"Asynchronous Control Flow"_, the choice on which abstraction to use depends heavily on project context. So let's explore both, starting with callback-based reading and writing.
 -->
@@ -234,6 +234,7 @@ readFile(__filename, {encoding: 'utf8'}, (err, contents) => {
 ``` 
 
 ::right::
+
 ```js
 'use strict'  
 const { join } = require('path')  
@@ -253,6 +254,7 @@ readFile(__filename, {encoding: 'utf8'}, (err, contents) => {
   })  
 })
 ```
+
   <!--
 
   
@@ -357,7 +359,7 @@ The **fs** module has **fs.createReadStream** and **fs.createWriteStream** metho
 'use strict'  
 const { pipeline } = require('stream')  
 const { join } = require('path')  
-const { createReadStream, createWriteStream } = require('fs')**
+const { createReadStream, createWriteStream } = require('fs')
   
 pipeline(  
   createReadStream(__filename),  

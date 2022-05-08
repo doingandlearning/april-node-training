@@ -13,8 +13,8 @@ const createEntryStream = () => {
   return new Transform({
     writableObjectMode: true,
     readableObjectMode: false,
-    transform(entry, enc, next) {
-      next(null, `${syntax} "${entry.name}"`);
+    transform(entry, enc, callback) {
+      callback(null, `${syntax} "${entry.name}"`);
       syntax = ",\n";
     },
     final(cb) {

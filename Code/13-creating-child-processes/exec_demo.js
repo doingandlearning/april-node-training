@@ -1,8 +1,12 @@
 const { exec } = require("child_process");
 
-// find /
+const ac = new AbortController();
 
-exec("ls -lh", (error, stdout, stderr) => {
+const { signal } = ac;
+
+// // find /
+// // process.execPath
+exec(`ls -lh`, { signal }, (error, stdout, stderr) => {
   if (error) {
     console.log(`error: ${error.message}`);
     return;
@@ -12,3 +16,5 @@ exec("ls -lh", (error, stdout, stderr) => {
   }
   console.log(`stdout: ${stdout}`);
 });
+
+ac.abort();

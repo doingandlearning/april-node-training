@@ -6,7 +6,8 @@ const cwd = resolve(".");
 const files = new Set(readdirSync("."));
 watch(".", (evt, filename) => {
   try {
-    const { ctimeMs, mtimeMs } = statSync(join(cwd, filename));
+    const { ctimeMs, mtimeMs, ...rest } = statSync(join(cwd, filename));
+    console.log(rest);
     if (files.has(filename) === false) {
       evt = "created";
       files.add(filename);

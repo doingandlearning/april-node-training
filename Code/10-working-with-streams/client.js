@@ -2,6 +2,7 @@ import { request } from "http";
 import { createGzip } from "zlib";
 import { createReadStream } from "fs";
 import { basename } from "path";
+import { createCipheriv, randomBytes } from "crypto";
 
 const filename = process.argv[2];
 const serverHost = process.argv[3];
@@ -23,6 +24,7 @@ const req = request(httpRequestOptions, (res) => {
 });
 
 createReadStream(filename)
+  .pipe(ENCRYPTTHEDATA())
   .pipe(createGzip())
   .pipe(req)
   .on("finish", () => {

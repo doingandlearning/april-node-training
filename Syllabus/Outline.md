@@ -21,3 +21,5 @@
 - Use Node's process and OS access
 - Using Node to leverage executables in any language
 - Become familar with testing approaches in Node
+
+- Supertest
