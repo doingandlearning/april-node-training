@@ -1,0 +1,20 @@
+{
+  "name": "may2022",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "Kevin Cunningham",
+  "license": "MIT",
+  "dependencies": {
+    "pino": "^7.11.0"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
+}
